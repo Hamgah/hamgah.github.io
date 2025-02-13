@@ -129,6 +129,20 @@
     .linkedin a:hover {
         color: #ff9966;
     }
+    /*-- video is alligned to the left when i want it to the center so this will make the video center allgined */
+            .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center; /* Vertically center the video */
+        padding: 20px;
+    }
+
+    .video-container video {
+        width: 60%; /* Adjust width as needed, this makes the video smaller */
+        max-width: 600px; /* Optional: to limit maximum size */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Optional: to add rounded corners */
+    }
     </style>
 </head>
 <body>
