@@ -46,16 +46,53 @@
             font-size: 20px;
             text-decoration: none;
         }
-        .photo-album {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 10px;
-        }
+    .carousel {
+        position: relative;
+        width: 300px; /* Adjust as needed */
+        height: 200px;
+        margin: auto;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-        .photo-album img {
-        width: 100%;
-        border-radius: 8px;
-        }
+    .carousel-container {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-image {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        opacity: 0.5;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    }
+
+    .carousel-image.active {
+        opacity: 1;
+        transform: scale(1.2); /* Make the focused image slightly larger */
+    }
+
+    button {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 18px;
+        z-index: 2;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
     </style>
 </head>
 <body>
@@ -64,7 +101,10 @@
         <!-- About Me Section -->
         <section class="section" id="about">
             <h1>About Me</h1>
-            <p>Hello! My name is Hamza Dwekat and I am an ITSS major at UTD! <br> I specialize in Cyber Security and am looking to expand my professional career <br> with an internship this summer 2025!<br> I have a company certificate in python and AI/ML with IBuildSoftLLC<br>If you would like to contact me please contact me via (1)919-353-3377<br>or my email at hmzdwekat@gmail.com</p>
+            <p>Hello! My name is Hamza Dwekat and I am an ITSS major at UTD! <br> 
+                I specialize in Cyber Security and am looking to expand my professional career <br> 
+                with an internship this summer 2025!<br> I have a company certificate in python and AI/ML with IBuildSoftLLC<br>
+                If you would like to contact me please contact me via (1)919-353-3377<br>or my email at hmzdwekat@gmail.com</p>
         </section>
         
         <!-- Video Section -->
@@ -77,9 +117,12 @@
         <section class="section" id="resume">
             <h2>Resume Highlights</h2>
             <div class="resume-highlights">
-                <div>✔ [Highlight 1]</div>
-                <div>✔ [Highlight 2]</div>
-                <div>✔ [Highlight 3]</div>
+                <div>All projects that I have done after 2024 are posted on Github.com/hamgah/</div>
+                <div>I have interned at IBuildSoftLLC, this opportunity allowed me to <br>
+                    get experience in understanding how people in the professional field work<br>
+                 with each other, and allowed me to take two certificate courses, one in Python and <br>
+                another in AI/ML. Employer: Rahat Khan</div>
+                <div>Here is a link to download my resume:</div>
             </div>
             <a href="Hamza-Dwekat-Resume_Jan 2025.pdf" class="resume-link" download>Download My Resume</a>
         </section>
@@ -89,10 +132,15 @@
             <h2>Fun Facts About Me</h2>
             <p>I have a cat named Filfil!<br>He is a siamese breed and we have had him since he was a baby but now he is almost 3 years old!</p>
             <br>
-            <div class="photo-album">
-                <img src="babyfilfil.jpg" alt="baby filfil" width="200">
-                <img src="Filfil sitting.jpg" alt="filfil sitting" width="200">
-                <img src="filfilsleeping.jpg" alt="filfil sleeping" width="200">
+                <div class="carousel">
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <div class="carousel-container">
+            <img class="carousel-image" src="babyfilfil.jpg" alt="Filfil as a baby">
+            <img class="carousel-image" src="Filfil sitting.jpg" alt="Filfil sitting">
+            <img class="carousel-image" src="filfilsleeping.jpg" alt="Filfil sleeping">
+        </div>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+                </div>
         </section>
         
         <!-- LinkedIn Showcase -->
