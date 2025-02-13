@@ -46,6 +46,16 @@
             font-size: 20px;
             text-decoration: none;
         }
+        .photo-album {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+        }
+
+        .photo-album img {
+        width: 100%;
+        border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -60,7 +70,7 @@
         <!-- Video Section -->
         <section class="section video-container" id="video">
             <h2>Introduction Video</h2>
-            <video src="your-video.mp4" autoplay muted loop></video>
+            <video src="IMG_6979.mp4" autoplay muted loop></video>
         </section>
         
         <!-- Resume Highlights -->
@@ -71,13 +81,18 @@
                 <div>✔ [Highlight 2]</div>
                 <div>✔ [Highlight 3]</div>
             </div>
-            <a href="your-resume.pdf" class="resume-link" download>Download My Resume</a>
+            <a href="Hamza-Dwekat-Resume_Jan 2025.pdf" class="resume-link" download>Download My Resume</a>
         </section>
         
         <!-- Fun Facts -->
         <section class="section" id="fun-facts">
             <h2>Fun Facts About Me</h2>
-            <p>[Your fun facts here]</p>
+            <p>I have a cat named Filfil!<br>He is a siamese breed and we have had him since he was a baby but now he is almost 3 years old!</p>
+            <br>
+            <div class="photo-album">
+                <img src="babyfilfil.jpg" alt="baby filfil" width="200">
+                <img src="Filfil sitting.jpg" alt="filfil sitting" width="200">
+                <img src="filfilsleeping.jpg" alt="filfil sleeping" width="200">
         </section>
         
         <!-- LinkedIn Showcase -->
