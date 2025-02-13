@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: white;
+            background-color: Pink;
             color: black;
             margin: 0;
             padding: 0;
@@ -50,47 +50,45 @@
             text-decoration: none;
         }
         /* Carousel Styling */
-        .carousel {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            margin: auto;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-image {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
-            opacity: 0.5;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-        }
-        .carousel-image.active {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        button {
-            position: absolute;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-            font-size: 18px;
-            z-index: 2;
-        }
-        .prev {
-            left: 10px;
-        }
-        .next {
-            right: 10px;
-        }
+    .carousel {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    .carousel-container {
+        display: flex;
+        width: 100%; 
+        transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-image {
+        width: 300px;
+        height: 200px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
+
+    button {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        font-size: 18px;
+        z-index: 2;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
     </style>
 </head>
 <body>
@@ -127,15 +125,15 @@
             <h2>Fun Facts About Me</h2>
             <p>I have a cat named Filfil!<br>He is a Siamese breed and we have had him since he was a baby, but now he is almost 3 years old!</p>
             <br>
-            <div class="carousel">
-                <button class="prev" onclick="prevSlide()">&#10094;</button>
-                <div class="carousel-container">
-                    <img class="carousel-image active" src="babyfilfil.jpg" alt="Filfil as a baby">
-                    <img class="carousel-image" src="Filfil_sitting.jpg" alt="Filfil sitting">
-                    <img class="carousel-image" src="filfilsleeping.jpg" alt="Filfil sleeping">
-                </div>
-                <button class="next" onclick="nextSlide()">&#10095;</button>
-            </div>
+<div class="carousel">
+    <button class="prev">&#10094;</button>
+    <div class="carousel-container">
+        <img class="carousel-image" src="babyfilfil.jpg" alt="Filfil as a baby">
+        <img class="carousel-image" src="Filfil_sitting.jpg" alt="Filfil sitting">
+        <img class="carousel-image" src="filfilsleeping.jpg" alt="Filfil sleeping">
+    </div>
+    <button class="next">&#10095;</button>
+</div>
         </section>
         
         <!-- LinkedIn Showcase -->
@@ -147,29 +145,30 @@
 
     <!-- JavaScript Fix: Move to Bottom -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            let currentIndex = 0;
-            const images = document.querySelectorAll('.carousel-image');
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-image');
+        const totalImages = images.length;
+        const carouselContainer = document.querySelector('.carousel-container');
+        const prevButton = document.querySelector('.prev');
+        const nextButton = document.querySelector('.next');
 
-            function updateCarousel() {
-                images.forEach((img, index) => {
-                    img.classList.remove('active');
-                    img.style.transform = `translateX(${(index - currentIndex) * 100}%)`;
-                });
-                images[currentIndex].classList.add('active');
-            }
+        function updateCarousel() {
+            const offset = -currentIndex * 300; // Move container by 300px per image
+            carouselContainer.style.transform = `translateX(${offset}px)`;
+        }
 
-            function nextSlide() {
-                currentIndex = (currentIndex + 1) % images.length;
-                updateCarousel();
-            }
+        nextButton.addEventListener("click", function () {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        });
 
-            function prevSlide() {
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateCarousel();
-            }
+        prevButton.addEventListener("click", function () {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
 
-            updateCarousel(); // Initialize carousel
+        updateCarousel();// Initialize carousel
         });
     </script>
 </body>
