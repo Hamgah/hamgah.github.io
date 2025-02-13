@@ -1,0 +1,21 @@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {  //initialize event
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries, observer) => {  //add observer so code can notice when scrolling
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.3,   //add adjustable threshold of how much I would like to see vs how much i would like to become invisible, 0.3 is 30%
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+</script>
