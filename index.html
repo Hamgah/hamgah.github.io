@@ -5,72 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Portfolio</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: Pink;
-            color: black;
-            margin: 0;
-            padding: 0;
-            text-align: center; /* Center align content */
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-        }
-        h1, h2 {
-            color: goldenrod;
-        }
-        .section {
-            padding: 50px 0;
-            border-bottom: 2px solid goldenrod;
-        }
-        /* Video Adjustments */
-        .video-container video {
-            width: 50%; /* Reduce size */
-            display: block;
-            margin: auto;
-        }
-        .resume-highlights div {
-            margin-bottom: 15px;
-        }
-        .resume-link {
-            display: block;
-            margin-top: 20px;
-            font-weight: bold;
-            color: goldenrod;
-            text-decoration: none;
-        }
-        .linkedin {
-            text-align: center;
-            padding: 20px;
-        }
-        .linkedin a {
-            color: goldenrod;
-            font-size: 20px;
-            text-decoration: none;
-        }
-        /* Carousel Styling */
+        
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: linear-gradient(to right, #f0f4f8, #d9e7f1); /* Light gradient */
+        color: #4f4f4f; /* Dark grey text for readability */
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    /* Main container */
+    .container {
+        width: 80%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff; /* White background for sections */
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow around container */
+    }
+
+    /* Heading styles */
+    h1, h2 {
+        color: #2d3a4b; /* Muted dark blue for headers */
+        text-align: center;
+    }
+
+    /* Section styling */
+    .section {
+        padding: 40px;
+        margin: 20px 0;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .section.visible {
+        opacity: 1;
+    }
+
+    /* Styling for resume links */
+    .resume-link {
+        display: inline-block;
+        margin-top: 20px;
+        font-weight: bold;
+        color: #ffcc66;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .resume-link:hover {
+        color: #ff9966;
+    }
+
+    /* Carousel */
     .carousel {
         position: relative;
-        width: 300px;
-        height: 200px;
+        width: 100%;
+        max-width: 400px;
+        height: 250px;
         margin: auto;
         overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .carousel-container {
         display: flex;
-        width: 100%; 
         transition: transform 0.5s ease-in-out;
     }
 
     .carousel-image {
-        width: 300px;
-        height: 200px;
+        width: 100%;
+        height: 250px;
         object-fit: cover;
         flex-shrink: 0;
     }
 
+    /* Buttons */
     button {
         position: absolute;
         background-color: rgba(0, 0, 0, 0.5);
@@ -80,14 +95,39 @@
         padding: 10px;
         font-size: 18px;
         z-index: 2;
+        border-radius: 50%;
     }
 
     .prev {
         left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .next {
         right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* LinkedIn section */
+    .linkedin {
+        text-align: center;
+        padding: 20px;
+        background-color: #eef3f7;
+        border-radius: 8px;
+    }
+
+    .linkedin a {
+        color: #ffcc66;
+        font-size: 20px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+    }
+
+    .linkedin a:hover {
+        color: #ff9966;
     }
     </style>
 </head>
@@ -129,7 +169,7 @@
     <button class="prev">&#10094;</button>
     <div class="carousel-container">
         <img class="carousel-image" src="babyfilfil.jpg" alt="Filfil as a baby">
-        <img class="carousel-image" src="Filfil_sitting.jpg" alt="Filfil sitting">
+        <img class="carousel-image" src="Filfil sitting.jpg" alt="Filfil sitting">
         <img class="carousel-image" src="filfilsleeping.jpg" alt="Filfil sleeping">
     </div>
     <button class="next">&#10095;</button>
@@ -145,7 +185,26 @@
 
     <!-- JavaScript Fix: Move to Bottom -->
     <script>
-    document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener('DOMContentLoaded', function () {  //script using java language to make the webpage phase out previous information and phase in new information loaded
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('visible');
+                }
+            });
+        }, {
+            threshold: 0.3, // Trigger when 30% of the section is visible
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    });
+    document.addEventListener("DOMContentLoaded", function () {  //java script to add a carousel of images for the section showcasing filfil
         let currentIndex = 0;
         const images = document.querySelectorAll('.carousel-image');
         const totalImages = images.length;
